@@ -336,25 +336,55 @@ def random_product(*args, **kwds):
 
     Examples,
 
+        >>> import random; random.seed(1)
+
         >>> random_product('123', 'abc')
-        ('...', '...')
+        ('1', 'c')
 
         >>> random_product('123', 'abc', repeat=2)
-        ('...', '...', '...', '...')
+        ('3', 'a', '2', 'b')
     """
     pools = map(tuple, args) * kwds.get('repeat', 1)
     return tuple(random.choice(pool) for pool in pools)
 
 
 def random_permutation(iterable, r=None):
-    """Random selection from itertools.permutations(iterable, r)"""
+    """Random selection from itertools.permutations(iterable, r)
+
+    Examples,
+
+        >>> import random; random.seed(1)
+
+        >>> random_permutation('123abc')
+        ('1', 'b', 'a', 'c', '3', '2')
+
+        >>> random_permutation('123abc')
+        ('a', 'c', '1', 'b', '2', '3')
+
+        >>> random_permutation('123abc', r=3)
+        ('b', '1', '2')
+
+        >>> random_permutation('123abc', r=3)
+        ('b', '2', 'a')
+    """
     pool = tuple(iterable)
     r = len(pool) if r is None else r
     return tuple(random.sample(pool, r))
 
 
 def random_combination(iterable, r):
-    """Random selection from itertools.combinations(iterable, r)"""
+    """Random selection from itertools.combinations(iterable, r)
+
+    Examples,
+
+        >>> import random; random.seed(1)
+
+        >>> random_combination('123abc', 3)
+        ('1', 'a', 'b')
+
+        >>> random_combination('123abc', 3)
+        ('2', '3', 'c')
+    """
     pool = tuple(iterable)
     n = len(pool)
     indices = sorted(random.sample(xrange(n), r))
@@ -364,6 +394,16 @@ def random_combination(iterable, r):
 def random_combination_with_replacement(iterable, r):
     """Random selection from itertools.combinations_with_replacement(
     iterable, r)
+
+    Examples,
+
+        >>> import random; random.seed(1)
+
+        >>> random_combination_with_replacement('123abc', 3)
+        ('1', 'b', 'c')
+
+        >>> random_combination_with_replacement('123abc', 3)
+        ('2', '3', '3')
     """
     pool = tuple(iterable)
     n = len(pool)
@@ -377,6 +417,31 @@ def tee_lookahead(t, i):
 
     Raise an IndexError if the underlying iterator doesn't
     have enough values.
+
+    Examples,
+
+        >>> from itertools import tee
+
+        >>> t = tee('abc')
+
+        >>> tee_lookahead(t[0], 1), tee_lookahead(t[1], 1)
+        ('b', 'b')
+
+        >>> tee_lookahead(t[0], 0), tee_lookahead(t[1], 0)
+        ('a', 'a')
+
+        >>> tee_lookahead(t[0], 1), tee_lookahead(t[1], 4)
+        Traceback (most recent call last):
+            ...
+        IndexError: 4
+
+        >>> tee_lookahead(t[0], 2), tee_lookahead(t[1], 2)
+        ('c', 'c')
+
+    And the tee objects in t are still at their respective start positions:
+
+        >>> zip(*t)
+        [('a', 'a'), ('b', 'b'), ('c', 'c')]
     """
     for value in islice(t.__copy__(), i, None):
         return value
