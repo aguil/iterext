@@ -63,8 +63,8 @@ def chunks(iterable, size=20):
     >>> list(chunks('ABCDEFG', size=3))
     [('A', 'B', 'C'), ('D', 'E', 'F'), ('G',)]
 
-    >>> list(chunks('ABCDEFG', size=3))
-    [('A', 'B', 'C'), ('D', 'E', 'F'), ('G',)]
+    >>> list(chunks([1, 2, 3, 4, 5, 6], size=2))
+    [(1, 2), (3, 4), (5, 6)]
     """
     stop = object()
 
