@@ -1,39 +1,39 @@
 """ Itertools recipes from
         http://docs.python.org/library/itertools.html#recipes
 """
+
 import collections
-from itertools import (chain, combinations, count, cycle,
-                       groupby,
-                       imap, ifilterfalse, islice, izip, izip_longest,
-                       repeat,
-                       starmap,
-                       tee)
+from itertools import chain, combinations, count, cycle, groupby, imap
+from itertools import ifilterfalse, islice, izip, izip_longest, repeat, starmap
+from itertools import tee
 import operator
 import random
 
 
-__all__ = ('consume',
-           'dotproduct',
-           'flatten',
-           'grouper',
-           'iter_except',
-           'ncycles',
-           'nth',
-           'padnone',
-           'pairwise',
-           'powerset',
-           'quantify',
-           'random_combination',
-           'random_combination_with_replacement',
-           'random_permutation',
-           'random_product',
-           'repeatfunc',
-           'roundrobin',
-           'tabulate',
-           'take',
-           'tee_lookahead',
-           'unique_everseen',
-           'unique_justseen')
+__all__ = (
+    'consume',
+    'dotproduct',
+    'flatten',
+    'grouper',
+    'iter_except',
+    'ncycles',
+    'nth',
+    'padnone',
+    'pairwise',
+    'powerset',
+    'quantify',
+    'random_combination',
+    'random_combination_with_replacement',
+    'random_permutation',
+    'random_product',
+    'repeatfunc',
+    'roundrobin',
+    'tabulate',
+    'take',
+    'tee_lookahead',
+    'unique_everseen',
+    'unique_justseen'
+)
 
 
 def flatten(listOfLists):
