@@ -8,14 +8,14 @@ def read(fname):
 
 setup(
     name="iterext",
-    version="0.0.1",
+    version="1.0",
     url='http://github.com/aguil/iterext',
     author="Jason Aguilon",
     author_email="jaguilon@gmail.com",
     description='iterext: Python itertools recipes.',
     long_description=read('README.rst'),
     packages=find_packages(),
-    classifiers=['Development Status :: 1 - Planning',
+    classifiers=['Development Status :: 5 - Production/Stable',
                  'Intended Audience :: Developers',
                  'Topic :: Software Development :: Libraries',
                  'Topic :: Utilities',
