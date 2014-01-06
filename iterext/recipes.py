@@ -1,6 +1,7 @@
 """ Itertools recipes from
         http://docs.python.org/library/itertools.html#recipes
 """
+
 import collections
 import functools
 from itertools import chain, combinations, count, cycle, groupby, imap
