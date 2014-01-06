@@ -1,6 +1,6 @@
 import itertools
 
-from . import recipes
+from . import extras, recipes
 
 
 __all__ = []
@@ -38,5 +38,6 @@ def update_globals(module, attrs):
 
 update_globals(itertools, itertools_all)
 update_globals(recipes, recipes.__all__)
+update_globals(extras, extras.__all__)
 
 del update_globals
