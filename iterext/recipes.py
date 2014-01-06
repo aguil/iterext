@@ -2,12 +2,9 @@
         http://docs.python.org/library/itertools.html#recipes
 """
 import collections
-from itertools import (chain, combinations, count, cycle,
-                       groupby,
-                       imap, ifilterfalse, islice, izip, izip_longest,
-                       repeat,
-                       starmap,
-                       tee)
+from itertools import chain, combinations, count, cycle, groupby, imap
+from itertools import ifilterfalse, islice, izip, izip_longest, repeat, starmap
+from itertools import takewhile, tee
 import operator
 import random
 
