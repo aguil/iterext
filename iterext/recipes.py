@@ -11,28 +11,30 @@ import operator
 import random
 
 
-__all__ = ('consume',
-           'dotproduct',
-           'flatten',
-           'grouper',
-           'iter_except',
-           'ncycles',
-           'nth',
-           'padnone',
-           'pairwise',
-           'powerset',
-           'quantify',
-           'random_combination',
-           'random_combination_with_replacement',
-           'random_permutation',
-           'random_product',
-           'repeatfunc',
-           'roundrobin',
-           'tabulate',
-           'take',
-           'tee_lookahead',
-           'unique_everseen',
-           'unique_justseen')
+__all__ = (
+    'consume',
+    'dotproduct',
+    'flatten',
+    'grouper',
+    'iter_except',
+    'ncycles',
+    'nth',
+    'padnone',
+    'pairwise',
+    'powerset',
+    'quantify',
+    'random_combination',
+    'random_combination_with_replacement',
+    'random_permutation',
+    'random_product',
+    'repeatfunc',
+    'roundrobin',
+    'tabulate',
+    'take',
+    'tee_lookahead',
+    'unique_everseen',
+    'unique_justseen'
+)
 
 
 def flatten(listOfLists):
