@@ -12,6 +12,7 @@ import random
 
 
 __all__ = (
+    'chunks',
     'consume',
     'dotproduct',
     'flatten',
