@@ -8,7 +8,7 @@ def read(fname):
 
 setup(
     name="iterext",
-    version="1.0",
+    version="1.1",
     url='http://github.com/aguil/iterext',
     author="Jason Aguilon",
     author_email="jaguilon@gmail.com",
