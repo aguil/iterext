@@ -3,7 +3,7 @@
 """
 
 import collections
-from itertools import chain, combinations, count, cycle, groupby, imap
+from itertools import chain, combinations, count, cycle, groupby, ifilter, imap
 from itertools import ifilterfalse, islice, izip, izip_longest, repeat, starmap
 from itertools import tee
 import operator
@@ -11,8 +11,10 @@ import random
 
 
 __all__ = (
+    'all_equal',
     'consume',
     'dotproduct',
+    'first_true',
     'flatten',
     'grouper',
     'iter_except',
@@ -20,6 +22,7 @@ __all__ = (
     'nth',
     'padnone',
     'pairwise',
+    'partition',
     'powerset',
     'quantify',
     'random_combination',
@@ -28,12 +31,50 @@ __all__ = (
     'random_product',
     'repeatfunc',
     'roundrobin',
+    'tail',
     'tabulate',
     'take',
     'tee_lookahead',
     'unique_everseen',
     'unique_justseen'
 )
+
+
+def all_equal(iterable):
+    """Returns True if all the elements are equal to each other
+
+    Example::
+        >>> all_equal('aaaaaa')
+        True
+
+        >>> all_equal([1, 1, 2, 1])
+        False
+    """
+    g = groupby(iterable)
+    return next(g, True) and not next(g, False)
+
+
+def first_true(iterable, default=False, pred=None):
+    """Returns the first true value in the iterable.
+
+    If no true value is found, returns *default*
+
+    If *pred* is not None, returns the first item
+    for which pred(item) is true.
+
+    Example::
+        >>> first_true([None, 'a', 'b', 'c'], 'x')
+        'a'
+
+        >>> first_true([None, None, None], 'x')
+        'x'
+
+        >>> first_true(['a', 'b'], 'x', lambda c: c == 'b')
+        'b'
+    """
+    # first_true([a,b,c], x) --> a or b or c or x
+    # first_true([a,b], x, f) --> a if f(a) else b if f(b) else x
+    return next(ifilter(pred, iterable), default)
 
 
 def flatten(listOfLists):
@@ -102,6 +143,28 @@ def pairwise(iterable):
     a, b = tee(iterable)
     next(b, None)
     return izip(a, b)
+
+
+def partition(pred, iterable):
+    """Use a predicate to partition entries into false entries and true entries
+
+    Example::
+        >>> a, b = partition(lambda n: n % 2, range(10))
+        >>> list(a), list(b)
+        ([0, 2, 4, 6, 8], [1, 3, 5, 7, 9])
+    """
+    t1, t2 = tee(iterable)
+    return ifilterfalse(pred, t1), ifilter(pred, t2)
+
+
+def tail(n, iterable):
+    """"Return an iterator over the last n items
+
+    Example::
+        >>> list(tail(3, 'ABCDEFG'))
+        ['E', 'F', 'G']
+    """
+    return iter(collections.deque(iterable, maxlen=n))
 
 
 def take(n, iterable):
